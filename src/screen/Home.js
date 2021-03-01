@@ -31,7 +31,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FF5733",
+    /* backgroundColor: "#FF5733",  */
     justifyContent: "center",
   },
 
@@ -40,30 +40,31 @@ const styles = StyleSheet.create({
     marginHorizontal: "10%",
     flex: 1,
     flexGrow: 10,
-    backgroundColor: "#B8FF33",
+    /* backgroundColor: "#B8FF33", */
     justifyContent: "center",
   },
 
   bodyheader: {
-    flex: 3,
-    /* marginVertical: '30%',
-    marginHorizontal: '10%', */
+    flex: 5,
+    marginVertical: '1%',
+    marginHorizontal: '5%', 
     justifyContent: "center",
-    backgroundColor: "#FF5733",
+    /* backgroundColor: "#FF5733", */
+    justifyContent: "center",
   },
 
   bodybody: {
-    flex: 1,
-    marginVertical: "30%",
+    flex: 5,
+    marginVertical: "20%",
     marginHorizontal: "10%",
-    flexGrow: 5,
-    backgroundColor: "#FF5733",
+    flexGrow: 20,
+    /* backgroundColor: "#B8FF33",  */
     justifyContent: "flex-end",
   },
 
   footer: {
     flex: 1,
-    backgroundColor: "#FF5733",
+    /* backgroundColor: "#FF5733", */
     alignItems: "center",
     justifyContent: "flex-end",
     marginVertical: "15%",
@@ -71,7 +72,9 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 30,
-    height: 30,
+    width: 100,
+    height: 100,
+    marginVertical: '1%',
+    marginHorizontal: '35%', 
   },
 });
