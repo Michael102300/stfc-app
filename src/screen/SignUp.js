@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
-import { Header, MyCustomCenterComponent, MyCustomLeftComponent, MyCustomRightComponent } from "react-native-elements";
 import Header from "../components/Header"
 
 
