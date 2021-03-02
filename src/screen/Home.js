@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Input, Button, Image } from "react-native-elements";
+import { View, Text, StyleSheet, Image } from "react-native";
+import { Input, Button } from "react-native-elements";
 import imagen from "../media/inicio.jpg";
 
 const Home = ({ navigation }) => {
@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.body}>
         <View style={styles.bodyheader}>
-          <Image style={styles.image} source={imagen} />
+          <Image source={imagen} />
         </View>
 
         <View style={styles.bodybody}>
