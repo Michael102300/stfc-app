@@ -4,3 +4,13 @@ export const GET_USER = "GET_USER";
 export const SUCCESSFULL_LOGIN = "SUCCESSFULL_LOGIN";
 export const ERROR_LOGIN = "ERROR_LOGIN";
 export const LOG_OUT = "LOG_OUT";
+
+export const SHOW_ALERT = "SHOW_ALERT";
+export const HIDE_ALERT = "HIDE_ALERT";
+export const ADD_PROBLEM = "ADD_PROBLEM";
+export const ERROR_PROBLEM = "ERROR_PROBLEM";
+export const EDIT_PROBLEM = "EDIT_PROBLEM";
+export const GET_PROBLEM = "GET_PROBLEM";
+export const CURRENT_PROBLEM = "CURRENT_PROBLEM";
+export const GET_TECHS = "GET_TECHS";
+export const GET_ALL_USER = "GET_ALL_USER";

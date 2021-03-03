@@ -14,7 +14,7 @@ import Background from "../media/fondo.jpg";
 import AuthContext from "../context/auth/authContext";
 import { sub } from "react-native-reanimated";
 
-const Home = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const { login } = authContext;
   const [form, setForm] = useState({
@@ -26,7 +26,7 @@ const Home = ({ navigation }) => {
     login({ email, password });
   };
   return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={40}>
       <ImageBackground
         source={Background}
         style={{
@@ -46,11 +46,13 @@ const Home = ({ navigation }) => {
             <Input
               placeholder="Email"
               onChangeText={(e) => setForm({ ...form, email: e })}
+              value={email}
             />
             <Input
               placeholder="Password"
               onChangeText={(e) => setForm({ ...form, password: e })}
               secureTextEntry={true}
+              value={password}
             />
           </View>
           <View style={styles.footer}>
@@ -74,7 +76,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

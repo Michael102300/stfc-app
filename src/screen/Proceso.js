@@ -1,24 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Card, Button, Icon } from "react-native-elements";
-import ProblemsContext from "../context/problems/problemContext";
+import { Input, Button, Card } from "react-native-elements";
 import Header from "../components/Header";
-const Myproblems = ({ navigation }) => {
+import AuthContext from "../context/auth/authContext";
+import ProblemsContext from "../context/problems/problemContext";
+
+const Proceso = ({ navigation }) => {
   const problemContext = useContext(ProblemsContext);
   const { problems } = problemContext;
-  console.log(problems);
+  let proceso = problems.filter((pro) => pro.stateProcces === "proceso");
   return (
     <View>
-      <Header title="Mis problemas" navigation={navigation} />
+      <Header title="En proceso" navigation={navigation} />
       <ScrollView style={{ marginBottom: 90 }}>
-        {problems ? (
-          problems.length > 0 ? (
-            problems.map((pr) => (
+        {proceso ? (
+          proceso.length > 0 ? (
+            proceso.map((pr) => (
               <Card>
                 <Card.Title style={{ fontSize: 25 }}>{pr.name}</Card.Title>
                 <Card.Divider />
                 <View style={styles.containerText}>
-                  <Text style={styles.text}>Descripción: </Text>
+                  <Text style={styles.text}>Nombre: </Text>
                   <Text
                     style={[
                       { color: "black", fontWeight: "bold", opacity: 1 },
@@ -30,7 +32,7 @@ const Myproblems = ({ navigation }) => {
                 </View>
                 {pr.solution ? (
                   <View style={styles.containerText}>
-                    <Text style={styles.text}>Solucion: </Text>
+                    <Text style={styles.text}>Dificultad: </Text>
                     <Text
                       style={[
                         { color: "black", fontWeight: "bold", opacity: 1 },
@@ -54,7 +56,7 @@ const Myproblems = ({ navigation }) => {
                   </Text>
                 </View>
                 <View style={styles.containerText}>
-                  <Text style={styles.text}>Nombre del tecnico: </Text>
+                  <Text style={styles.text}>Técnico: </Text>
                   <Text
                     style={[
                       { color: "black", fontWeight: "bold", opacity: 1 },
@@ -65,7 +67,40 @@ const Myproblems = ({ navigation }) => {
                   </Text>
                 </View>
                 <View style={styles.containerText}>
+                  <Text style={styles.text}>Descripción: </Text>
+                  <Text
+                    style={[
+                      { color: "black", fontWeight: "bold", opacity: 1 },
+                      styles.text,
+                    ]}
+                  >
+                    {pr.createdAt.substring(0, 10)}
+                  </Text>
+                </View>
+                <View style={styles.containerText}>
                   <Text style={styles.text}>Fecha de creacion: </Text>
+                  <Text
+                    style={[
+                      { color: "black", fontWeight: "bold", opacity: 1 },
+                      styles.text,
+                    ]}
+                  >
+                    {pr.createdAt.substring(0, 10)}
+                  </Text>
+                </View>
+                <View style={styles.containerText}>
+                  <Text style={styles.text}>Fecha de ultimos cambios: </Text>
+                  <Text
+                    style={[
+                      { color: "black", fontWeight: "bold", opacity: 1 },
+                      styles.text,
+                    ]}
+                  >
+                    {pr.createdAt.substring(0, 10)}
+                  </Text>
+                </View>
+                <View style={styles.containerText}>
+                  <Text style={styles.text}>Acción: </Text>
                   <Text
                     style={[
                       { color: "black", fontWeight: "bold", opacity: 1 },
@@ -80,7 +115,7 @@ const Myproblems = ({ navigation }) => {
           ) : (
             <Card>
               <Card.Title style={{ fontSize: 20 }}>
-                No tienes problemas registrados
+                No tienes problemas en proceso
               </Card.Title>
             </Card>
           )
@@ -90,7 +125,7 @@ const Myproblems = ({ navigation }) => {
   );
 };
 
-export default Myproblems;
+export default Proceso;
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
