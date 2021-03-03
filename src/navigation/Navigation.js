@@ -6,6 +6,10 @@ import AuthContext from "../context/auth/authContext";
 import Login from "../screen/Login";
 import SignUp from "../screen/SignUp";
 import Home from "../screen/Home";
+import Myinfo from "../screen/Myinfo";
+import Create from "../screen/Create";
+import Myproblems from "../screen/Myproblems";
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -39,7 +43,9 @@ const DrawerNavigator = () => {
           component={Home}
           options={{ headerShown: false }}
         />
-        <Drawer.Screen name="SignUp" component={SignUp} />
+        <Drawer.Screen name="Mi información" component={Myinfo} />
+        <Drawer.Screen name="Crear problema" component={Create} />
+        <Drawer.Screen name="Mis problemas" component={Myproblems} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

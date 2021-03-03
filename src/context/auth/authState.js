@@ -74,7 +74,7 @@ const AuthState = (props) => {
         type: SUCCESSFULL_LOGIN,
         payload: response.data,
       });
-      await AsyncStore.setItem("token", response.data.token);
+      await AsyncStorage.setItem("token", response.data.token);
       authUser();
     } catch (error) {
       console.log(error.response.data.msg);
