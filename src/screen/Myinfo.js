@@ -1,9 +1,11 @@
+
 import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Header from "../components/Header";
 import AuthContext from "../context/auth/authContext";
 import ProblemsContext from "../context/problems/problemContext";
+
 
 const Myinfo = ({ navigation }) => {
   const authContext = useContext(AuthContext);
@@ -14,42 +16,46 @@ const Myinfo = ({ navigation }) => {
     authUser();
     getAllProblems();
   }, []);
-  return (
-    <View style={styles.contenedor}>
-      <Header title="Mi informacion" navigation={navigation} />
 
-      <View style={styles.body}>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Nombre:</Text>
-          <Text style={styles.text}>{user ? user.name : null}</Text>
-        </View>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Número de identificación:</Text>
-          <Text style={styles.text}>{user ? user.NIT : null}</Text>
-        </View>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Correo electrónico:</Text>
-          <Text style={styles.text}>{user ? user.email : null}</Text>
-        </View>
+        return (
+         
+          <View style={styles.contenedor}>
+            <Header title="Mi informacion" navigation={navigation} />
 
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Dirección:</Text>
-          <Text style={styles.text}>{user ? user.address : null}</Text>
-        </View>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Teléfono:</Text>
-          <Text style={styles.text}>{user ? user.phone : null}</Text>
-        </View>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Celular:</Text>
-          <Text style={styles.text}>{user ? user.mobile : null}</Text>
-        </View>
-      </View>
-    </View>
-  );
+            <View style={styles.body}>
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Nombre:</Text>
+                <Text style={styles.text}>{user ? user.name : null}</Text>
+              </View>
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Número de identificación:</Text>
+                <Text style={styles.text}>{user ? user.NIT : null}</Text>
+              </View>
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Correo electrónico:</Text>
+                <Text style={styles.text}>{user ? user.email : null}</Text>
+              </View>
+
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Dirección:</Text>
+                <Text style={styles.text}>{user ? user.address : null}</Text>
+              </View>
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Teléfono:</Text>
+                <Text style={styles.text}>{user ? user.phone : null}</Text>
+              </View>
+              <View style={styles.containerText}>
+                <Text style={styles.text}>Celular:</Text>
+                <Text style={styles.text}>{user ? user.mobile : null}</Text>
+              </View>
+            </View>
+          </View>
+        );
 };
 
-export default Myinfo;
+export default Myinfo; 
+
+
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
@@ -75,5 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "black",
     opacity: 0.7,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#aabbcc',
   },
 });
