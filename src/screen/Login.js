@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ImageBackground,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Input, Button } from "react-native-elements";
 import imagen from "../media/welcome.png";
@@ -25,7 +26,7 @@ const Home = ({ navigation }) => {
     login({ email, password });
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <ImageBackground
         source={Background}
         style={{
@@ -69,7 +70,7 @@ const Home = ({ navigation }) => {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

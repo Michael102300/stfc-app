@@ -90,6 +90,7 @@ const AuthState = (props) => {
   };
 
   const logout = async () => {
+    await AsyncStorage.removeItem("token");
     dispatch({
       type: LOG_OUT,
     });
