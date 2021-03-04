@@ -1,12 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
 import ProblemsContext from "../context/problems/problemContext";
 import Header from "../components/Header";
 const RegisterProblems = ({ navigation }) => {
   const problemContext = useContext(ProblemsContext);
-  const { problems } = problemContext;
+  const { problems, getAllProblems, saveCurrentProblem } = problemContext;
+  const [edit, setEdit] = useState(false);
+  useEffect(() => {
+    getAllProblems();
+  }, []);
   let register = problems.filter((pro) => pro.stateProcces === "registrado");
+  const currentProblemLocal = (id) => {
+    saveCurrentProblem(id);
+    console.log(id);
+    navigation.navigate("Editar");
+    /* setEdit(true); */
+  };
   return (
     <View>
       <Header title="Nuevos problemas" navigation={navigation} />
@@ -14,11 +24,40 @@ const RegisterProblems = ({ navigation }) => {
         {register ? (
           register.length > 0 ? (
             register.map((pr) => (
-              <Card>
-                <Card.Title style={{ fontSize: 25 }}>{pr.name}</Card.Title>
+              <Card key={pr._id}>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <View>
+                    <Text style={{ fontSize: 20 }}>Nombre del problema:</Text>
+                    <Card.Title style={{ fontSize: 25, textAlign: "left" }}>
+                      {pr.name}
+                    </Card.Title>
+                  </View>
+                  {edit ? (
+                    <Icon
+                      name="send"
+                      color="#3C6DCC"
+                      size={30}
+                      onPress={() => setEdit(false)}
+                    />
+                  ) : (
+                    <Icon
+                      name="create"
+                      color="#3C6DCC"
+                      size={30}
+                      onPress={() => currentProblemLocal(pr._id)}
+                    />
+                  )}
+                </View>
+                {/* <Card.Title style={{ fontSize: 25 }}>{pr.name}</Card.Title> */}
                 <Card.Divider />
                 <View style={styles.containerText}>
-                  <Text style={styles.text}>Nombre: </Text>
+                  <Text style={styles.text}>Descripción: </Text>
                   <Text
                     style={[
                       { color: "black", fontWeight: "bold", opacity: 1 },
@@ -30,7 +69,7 @@ const RegisterProblems = ({ navigation }) => {
                 </View>
                 {pr.solution ? (
                   <View style={styles.containerText}>
-                    <Text style={styles.text}>Dificultad: </Text>
+                    <Text style={styles.text}>Solucion: </Text>
                     <Text
                       style={[
                         { color: "black", fontWeight: "bold", opacity: 1 },
@@ -65,29 +104,7 @@ const RegisterProblems = ({ navigation }) => {
                   </Text>
                 </View>
                 <View style={styles.containerText}>
-                  <Text style={styles.text}>Descripción: </Text>
-                  <Text
-                    style={[
-                      { color: "black", fontWeight: "bold", opacity: 1 },
-                      styles.text,
-                    ]}
-                  >
-                    {pr.createdAt.substring(0, 10)}
-                  </Text>
-                </View>
-                <View style={styles.containerText}>
-                  <Text style={styles.text}>Fecha de creación: </Text>
-                  <Text
-                    style={[
-                      { color: "black", fontWeight: "bold", opacity: 1 },
-                      styles.text,
-                    ]}
-                  >
-                    {pr.createdAt.substring(0, 10)}
-                  </Text>
-                </View>
-                <View style={styles.containerText}>
-                  <Text style={styles.text}>Acción: </Text>
+                  <Text style={styles.text}>Fecha de creacion: </Text>
                   <Text
                     style={[
                       { color: "black", fontWeight: "bold", opacity: 1 },

@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
 import ProblemsContext from "../context/problems/problemContext";
 import Header from "../components/Header";
 const Myproblems = ({ navigation }) => {
   const problemContext = useContext(ProblemsContext);
-  const { problems } = problemContext;
-  console.log(problems);
+  const { problems, getAllProblems } = problemContext;
+  useEffect(() => {
+    getAllProblems();
+  }, []);
   return (
     <View>
       <Header title="Mis problemas" navigation={navigation} />

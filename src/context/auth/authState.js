@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
 import clientAxios from "../../api/axiosConfig";
-import tokenAuth from "../../api/tokenAuth";
 
 import {
   SUCCESSFULL_REGISTRATION,
@@ -48,12 +47,12 @@ const AuthState = (props) => {
 
   const authUser = async () => {
     const token = await AsyncStorage.getItem("token");
-    if (token) {
-      //funcion para enviar el token por headers
-      tokenAuth(token);
-    }
     try {
-      const response = await clientAxios.get("/api/auth");
+      const response = await clientAxios.get("/api/auth", {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
       dispatch({
         type: GET_USER,
         payload: response.data.user,

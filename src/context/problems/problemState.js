@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import ProblemsContext from "./problemContext";
 import problemReducer from "./problemReducer";
 import clientAxios from "../../api/axiosConfig";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
   ADD_PROBLEM,
@@ -27,10 +28,23 @@ const ProblemState = (props) => {
 
   const [state, dispatch] = useReducer(problemReducer, initialState);
 
-  const getAllProblems = async () => {
+  const getToken = async () => {
     try {
-      const res = await clientAxios.get("/api/problems");
-      console.log(res);
+      const token = await AsyncStorage.getItem("token");
+      return token;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAllProblems = async () => {
+    const token = await getToken();
+    try {
+      const res = await clientAxios.get("/api/problems", {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
       dispatch({
         type: GET_PROBLEM,
         payload: res.data,
@@ -48,8 +62,14 @@ const ProblemState = (props) => {
   };
 
   const getTechs = async () => {
+    const token = await getToken();
     try {
-      const res = await clientAxios.get("/api/techs");
+      const res = await clientAxios.get("/api/techs", {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
+      console.log(res.data);
       dispatch({
         type: GET_TECHS,
         payload: res.data,
@@ -60,8 +80,13 @@ const ProblemState = (props) => {
   };
 
   const getAllUsers = async () => {
+    const token = await getToken();
     try {
-      const res = await clientAxios.get("/api/users");
+      const res = await clientAxios.get("/api/users", {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
       dispatch({
         type: GET_ALL_USER,
         payload: res.data,
@@ -72,8 +97,13 @@ const ProblemState = (props) => {
   };
 
   const createProblem = async (data) => {
+    const token = await getToken();
     try {
-      const res = await clientAxios.post("/api/problems", data);
+      const res = await clientAxios.post("/api/problems", data, {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
       dispatch({
         type: ADD_PROBLEM,
         payload: res.data,
@@ -91,8 +121,13 @@ const ProblemState = (props) => {
   };
 
   const editProblem = async (data) => {
+    const token = await getToken();
     try {
-      const res = await clientAxios.put(`/api/problems/${data._id}`, data);
+      const res = await clientAxios.put(`/api/problems/${data._id}`, data, {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
       console.log(res);
       dispatch({
         type: EDIT_PROBLEM,

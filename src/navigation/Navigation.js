@@ -10,6 +10,7 @@ import Create from "../screen/Create";
 import Myproblems from "../screen/Myproblems";
 import Proceso from "../screen/Proceso";
 import Register from "../screen/RegisterProblem";
+import Edit from "../screen/EditProblem";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -47,6 +48,32 @@ const StackNavigator = () => {
   );
 };
 
+const EditNavigator = () => {
+  return (
+    <Stack.Navigator initialRouteName="proceso">
+      <Stack.Screen
+        name="proceso"
+        options={{ headerShown: false }}
+        component={Proceso}
+      />
+      <Stack.Screen name="Editar" component={Edit} />
+    </Stack.Navigator>
+  );
+};
+
+const EditNavigator2 = () => {
+  return (
+    <Stack.Navigator initialRouteName="proceso">
+      <Stack.Screen
+        name="nuevoproblemas"
+        options={{ headerShown: false }}
+        component={Register}
+      />
+      <Stack.Screen name="Editar" component={Edit} />
+    </Stack.Navigator>
+  );
+};
+
 const DrawerNavigator = ({ user }) => {
   return (
     <NavigationContainer>
@@ -61,12 +88,12 @@ const DrawerNavigator = ({ user }) => {
             <>
               <Drawer.Screen
                 name="En proceso"
-                component={Proceso}
+                component={EditNavigator}
                 options={{ headerShown: false }}
               />
               <Drawer.Screen
                 name="Nuevos Problemas"
-                component={Register}
+                component={EditNavigator2}
                 options={{ headerShown: false }}
               />
             </>

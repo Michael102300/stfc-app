@@ -14,3 +14,4 @@ export const GET_PROBLEM = "GET_PROBLEM";
 export const CURRENT_PROBLEM = "CURRENT_PROBLEM";
 export const GET_TECHS = "GET_TECHS";
 export const GET_ALL_USER = "GET_ALL_USER";
+export const CLEAN_TASK = "ClEAN_TASK";
